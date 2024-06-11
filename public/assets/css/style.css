@@ -1,0 +1,52 @@
+/* .metodePembayaran{
+    color: black;
+    border-radius: 10px;
+    margin: 3px;
+    padding: 10px;
+    cursor: pointer;
+} */
+#nominal,
+#nama_pengirim,
+#email_pengirim,
+#pesan_pengirim {
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.metodePembayaran:hover {
+  cursor: pointer;
+}
+
+.disabled-span {
+  pointer-events: none;
+  opacity: 0.6;
+}
+.page {
+  cursor: pointer;
+}
+
+#judulPage {
+  float: right;
+}
+
+#btnCopyIDTransaksi {
+  cursor: pointer;
+}
+
+:root {
+    --primer: #0dcaf0;
+    --second: #68D2E8;
+}
+
+.bg-primer {
+    background-color: var(--primer);
+}
+
+.bg-second {
+    background-color: var(--second);
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+}

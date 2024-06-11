@@ -1,0 +1,44 @@
+<%- include('../template/head') %>
+    <%- include('../template/header') %>
+        <div class="container mt-5">
+            <div class="card">
+                <div class="card-header">
+                    Daftar User Penerima
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- <%= dataPenerima.length %> -->
+                        <% if(dataPenerima) { %>
+                            <% dataPenerima.forEach((el)=> { %>
+                                <div class="<% if(dataPenerima.length == 1){%> 
+                                    col-lg-12
+                                    <% } else if(dataPenerima.length == 2){%>
+                                    col-lg-6
+                                    <% } else if(dataPenerima.length == 3){%>
+                                        col-lg-4
+                                        <% } else if(dataPenerima.length >= 4){%>
+                                            col-lg-3
+                                        <% } %>
+                                ">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="text-center">
+                                                <%= el.nama_user %>
+                                            </h4>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a style="float: right;" class="btn btn-outline-primary"
+                                                href="/<%= el.username %>">Beri <%= el.username %></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                                    <% } else{ %>
+                                        <div class="text-center">Tidak ada User Penerima</div>
+                                        <%} %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../template/js') %>
+            <%- include('../template/footer') %>

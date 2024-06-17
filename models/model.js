@@ -1,20 +1,6 @@
-import { Sequelize, DataTypes} from 'sequelize';
-
-// Konfigurasi MySQL2 tanpa opsi timeout
-const conn = mysql2.createConnection({
-    host: process.env.HOST,
-    user: process.env.USERDB,
-    password: process.env.PASSDB,
-    database: process.env.DBNAME
+import { Sequelize, DataTypes } from 'sequelize';
+const sequelize = new Sequelize("sawerin", "root", "", {
+    host: 'localhost',
+    dialect: 'mysql'
 });
-
-// Konfigurasi Sequelize dengan dialectOptions
-const sequelize = new Sequelize(process.env.DBNAME, process.env.USERDB, process.env.PASSDB, {
-    host: process.env.HOST,
-    dialect: 'mysql',
-    dialectOptions: {
-        connectTimeout: 60000 // Contoh timeout 60 detik
-    }
-});
-
 export { sequelize, DataTypes };

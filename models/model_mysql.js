@@ -1,9 +1,9 @@
 import mysql2 from 'mysql2'
 const conn = mysql2.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'sawerin'
+    host: process.env.HOST,
+    user: process.env.USERDB,
+    password: process.env.PASSDB,
+    database: process.env.DBNAME
 });
 
 export default { conn }

@@ -17,4 +17,4 @@ const sequelize = new Sequelize(process.env.DBNAME, process.env.USERDB, process.
     }
 });
 
-export { sequelize, testConnection, DataTypes };
+export { sequelize, DataTypes };

@@ -1,57 +1,55 @@
-<body>
-    <nav class="bg-primer mb-10">
-        <div class="container">
-        <header
-            class="d-flex justify-content-between py-3">
-            <div class="d-flex">
-                <img src="/assets/static/images/logo.png" alt="logo" class="logo">
-                <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none text-light" style="font-size: 30px; font-weight: bold;">
-                    SawerIn
-                </a>
-            </div>
+<header class="p-3 bg-primer border-bottom">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between">
+            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <img src="/assets/static/images/logo.png" alt="logo" class="logo me-3">
+                <span class="text-light" style="font-size: 30px; font-weight: bold;">
+                    <%= web_config.nama_project %>
+                </span>
+            </a>
 
-            <ul class="nav mb-2 justify-content-center mb-md-0" id="navLinks">
-                <li>
-                    <a href="#features" class="nav-link px-2 text-light"> Features </a>
+            <ul class="nav mb-2 mb-lg-0 d-flex justify-content-center justify-content-lg-center p-1">
+                <li class="nav-item">
+                    <a href="#about" class="nav-link px-2 fw-bold text-white"> About </a>
                 </li>
-                <li>
-                    <a href="#faqs" class="nav-link px-2 text-light"> FAQs </a>
+                <li class="nav-item">
+                    <a href="#features" class="nav-link px-2 fw-bold text-white"> Features </a>
                 </li>
-                <li>
-                    <a href="#about" class="nav-link px-2 text-light"> About </a>
+                <li class="nav-item">
+                    <a href="#faqs" class="nav-link px-2 fw-bold text-white"> FAQs </a>
                 </li>
             </ul>
 
-            <% if(!user) {%>
-                <div class="text-end">
-                    <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
-                        data-bs-target="#modalLogin">
-                        Login
-                    </button>
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
-                        data-bs-target="#modalRegister">Register</button>
-                </div>
-                <% } %>
-                    <% if(user) { %>
-                        <div class="dropdown text-end dropdown-center">
+            <% if(!user) { %>
+            <div class="text-center text-lg-end">
+                <button type="button" class="btn btn-danger me-2 fw-bold text-white" data-bs-toggle="modal"
+                    data-bs-target="#modalLogin">
+                    Login
+                </button>
+                <button type="button" class="btn btn-warning fw-bold text-dark" data-bs-toggle="modal"
+                    data-bs-target="#modalRegister">Register</button>
+            </div>
+            <% } %>
 
-                            <a href="#" class="d-block link-light text-decoration-none dropdown-toggle"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32"
-                                    class="rounded-circle" />
-                                | <%= user.nama_user %>
-                            </a>
-                            <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="<%= baseUrl %>/user/dashboard">Dashboard</a>
-                                </li>
-                                <li><a class="dropdown-item" href="<%= baseUrl %>/user/profile">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li><a class="dropdown-item" id="btnLogoutUser" style="cursor: pointer;">Logout</a></li>
-                            </ul>
-                        </div>
-                        <% } %>
-        </header>
+            <% if(user) { %>
+            <div class="dropdown text-center">
+                <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" /> | 
+                    <span class="fw-bold text-white p-1">
+                        <%= user.nama_user %>
+                    </span>
+                </a>
+                <ul class="dropdown-menu text-small">
+                    <li><a class="dropdown-item" href="<%=  web_config.domain %>/user/dashboard">Dashboard</a></li>
+                    <li><a class="dropdown-item" href="<%=  web_config.domain %>/user/profile">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" id="btnLogoutUser" style="cursor: pointer;">Logout</a></li>
+                </ul>
+            </div>
+            <% } %>
         </div>
-    </nav>
+    </div>
+</header>

@@ -34,8 +34,9 @@
                                         </div>
                                         <div class="col-6">
                                             <a id="link_page"
-                                                href="<%= baseUrl %>/<%= dataUser[0].username %>"><%= baseUrl %>/
-                                                <%= dataUser[0].username %>
+                                                href="<%=  web_config.domain %>/<%= dataUser[0].username %>">
+                                                <%= web_config.domain %>/
+                                                    <%= dataUser[0].username %>
                                             </a>
                                             <span class="mx-2">|</span>
                                             <img id="btnCopyLinkPage" style="cursor: pointer;" width="20"
@@ -102,6 +103,35 @@
                                             <span id="total_saldo">
                                                 <%= Saldo %>
                                             </span>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <div class="row mb-2">
+                                        <div class="col-6">
+                                            Akun Bank
+                                        </div>
+                                        <div class="col-6">
+                                            <span id="akun_bank">
+                                                <% if (dataUser[0].akun_bank) { %>
+                                                    <a href="/user/akun_bank">
+                                                        <%= dataUser[0].akun_bank.bank %> - <%=
+                                                                dataUser[0].akun_bank.no_rekening %> - <%=
+                                                                    dataUser[0].akun_bank.nama_rekening %>
+                                                    </a>
+                                                    <span class="m-1"></span>
+                                                    <span
+                                                        class="badge <%= dataUser[0].akun_bank.status ? 'text-bg-success' : 'text-bg-danger' %>">
+                                                        <%= dataUser[0].akun_bank.status ? 'Terverifikasi'
+                                                            : 'Tidak Terverifikasi' %>
+                                                    </span>
+                                                    <% } else { %>
+                                                        Akun Bank belum diatur | <a href="/user/akun_bank">atur
+                                                            disini</a>
+                                                        <% } %>
+                                            </span>
+
                                         </div>
                                     </div>
                                 </li>

@@ -5,101 +5,109 @@
         </button>
     </div>
     <% } %>
-<div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0dcaf0" fill-opacity="1" d="M0,192L120,192C240,192,480,192,720,170.7C960,149,1200,107,1320,85.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
-</div>
-<div class="bg-primer">
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-5">
-            <p class="col-md-4 mb-0 text-white">&copy; 2024 SawerIn</p>
-
-            <a href="/"
-               class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap" />
-                </svg>
-            </a>
-
-            <ul class="nav col-md-4 justify-content-end">
-                <li class="nav-item"><a href="<%= baseUrl %>#" class="nav-link px-2 text-white">Home</a></li>
-                <li class="nav-item"><a href="<%= baseUrl %>#about" class="nav-link px-2 text-white">About</a></li>
-                <li class="nav-item"><a href="<%= baseUrl %>#features" class="nav-link px-2 text-white">Features</a></li>
-                <li class="nav-item"><a href="<%= baseUrl %>#faqs" class="nav-link px-2 text-white">FAQs</a></li>
-            </ul>
-        </footer>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#0dcaf0" fill-opacity="1"
+                    d="M0,192L120,192C240,192,480,192,720,170.7C960,149,1200,107,1320,85.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z">
+                </path>
+            </svg>
         </div>
+        <div class="bg-primer">
+            <div class="container">
+                <footer class="d-flex flex-wrap justify-content-between align-items-center py-5">
+                    <p class="col-md-4 mb-0 text-white">&copy; 2024 <%= web_config.nama_project %></p>
 
-        <!-- Modal Login-->
-        <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary">
-                        <h1 class="modal-title fs-5 text-white" id="modalLoginLabel">Login</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12 mb-2">
-                                <label for="username_login" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username_login" value="">
-                            </div>
+                    <a href="/"
+                        class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32">
+                            <use xlink:href="#bootstrap" />
+                        </svg>
+                    </a>
 
-                            <div class="col-12 mb-2">
-                                <label for="password_login" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password_login" value="">
+                    <ul class="nav col-md-4 justify-content-end">
+                        <li class="nav-item"><a href="<%=  web_config.domain %>#"
+                                class="nav-link px-2 text-white">Home</a></li>
+                        <li class="nav-item"><a href="<%=  web_config.domain %>#about"
+                                class="nav-link px-2 text-white">About</a></li>
+                        <li class="nav-item"><a href="<%=  web_config.domain %>#features"
+                                class="nav-link px-2 text-white">Features</a></li>
+                        <li class="nav-item"><a href="<%=  web_config.domain %>#faqs"
+                                class="nav-link px-2 text-white">FAQs</a></li>
+                    </ul>
+                </footer>
+            </div>
+
+            <!-- Modal Login-->
+            <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h1 class="modal-title fs-5 text-white" id="modalLoginLabel">Login</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12 mb-2">
+                                    <label for="username_login" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username_login" value="">
+                                </div>
+
+                                <div class="col-12 mb-2">
+                                    <label for="password_login" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password_login" value="">
+                                </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btnLogin">Log In</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btnLogin">Log In</button>
+                </div>
+            </div>
+            <!-- Modal Register -->
+            <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="modalRegisterLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary">
+                            <h1 class="modal-title fs-5 text-white" id="modalRegisterLabel">Register</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12 mb-2">
+                                    <label for="username_register" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="username_register" value="">
+                                </div>
+
+                                <div class="col-12 mb-2">
+                                    <label for="nama_user" class="form-label">Nama Anda</label>
+                                    <input type="text" class="form-control" id="nama_user_register" value="">
+                                </div>
+
+                                <div class="col-12 mb-2">
+                                    <label for="email" class="form-label">Email Anda</label>
+                                    <input type="email" class="form-control" id="email_register" value="">
+                                </div>
+
+                                <div class="col-12 mb-2">
+                                    <label for="no_telp" class="form-label">No. Telp</label>
+                                    <input type="text" class="form-control" id="no_telp_register" value="">
+                                </div>
+
+                                <div class="col-12 mb-2">
+                                    <label for="password_register" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password_register" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btnRegister">Register</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Modal Register -->
-        <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="modalRegisterLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary">
-                        <h1 class="modal-title fs-5 text-white" id="modalRegisterLabel">Register</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-12 mb-2">
-                                <label for="username_register" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username_register" value="">
-                            </div>
-
-                            <div class="col-12 mb-2">
-                                <label for="nama_user" class="form-label">Nama Anda</label>
-                                <input type="text" class="form-control" id="nama_user_register" value="">
-                            </div>
-
-                            <div class="col-12 mb-2">
-                                <label for="email" class="form-label">Email Anda</label>
-                                <input type="email" class="form-control" id="email_register" value="">
-                            </div>
-
-                            <div class="col-12 mb-2">
-                                <label for="no_telp" class="form-label">No. Telp</label>
-                                <input type="text" class="form-control" id="no_telp_register" value="">
-                            </div>
-
-                            <div class="col-12 mb-2">
-                                <label for="password_register" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password_register" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btnRegister">Register</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
         </body>
         <script>
             $(document).ready(function () {

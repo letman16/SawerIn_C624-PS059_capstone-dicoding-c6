@@ -20,7 +20,7 @@
                                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/dashboard">Dashboard</a></li>
+                                                        href="<%=  web_config.domain %>/admin/dashboard">Dashboard</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">Transaksi Sawer
                                                 </li>
                                             </ol>
@@ -67,7 +67,9 @@
                                                         <%= el.waktu_transaksi%>
                                                     </td>
                                                     <td>
-                                                        <%= el.status_transaksi%>
+                                                        <span class="badge <%= el.status_transaksi === 'Sukses' ? 'bg-success' : 'bg-danger' %>">
+                                                            <%= el.status_transaksi %>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                                 <% }) %>

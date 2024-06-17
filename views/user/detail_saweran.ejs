@@ -11,7 +11,7 @@
                         </li>
                     </ol>
                 </nav>
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-header">
                         Detail Transaksi Sawer Masuk
                     </div>
@@ -19,10 +19,10 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <div class="row mb-2">
-                                    <div class="col-3">
+                                    <div class="col-md-4">
                                         <span class="fw-bolder">ID Transaksi</span>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-8">
                                         <span class="fst-italic">
                                             <%=detailSaweranByID[0].id_transaksi %>
                                         </span>
@@ -30,10 +30,10 @@
                                 </div>
 
                                 <div class="row mb-2">
-                                    <div class="col-3">
+                                    <div class="col-md-4">
                                         <span class="fw-bolder">Reff PG</span>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-8">
                                         <span class="fst-italic">
                                             <%=detailSaweranByID[0].reff_pg %>
                                         </span>
@@ -43,54 +43,36 @@
                             </div>
                             <div class="col-lg-7">
                                 <div class="row mb-2">
-                                    <div class="col-3">
-                                        <span class="fw-bolder">Nominal</span>
+                                    <div class="col-md-4">
+                                        <span class="fw-bolder"> Username / Nama Pengirim</span>
                                     </div>
-                                    <div class="col-7">
-                                        <span class="fst-italic" id="nominal">
-                                            <%=detailSaweranByID[0].nominal %>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-2">
-                                    <div class="col-3">
-                                        <span class="fw-bolder">User ID Pengirim</span>
-                                    </div>
-                                    <div class="col-7">
-                                        <span class="fst-italic">
-                                            <%=detailSaweranByID[0].user_id_pengirim %>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-2">
-                                    <div class="col-3">
-                                        <span class="fw-bolder">Nama Pengirim</span>
-                                    </div>
-                                    <div class="col-7">
-                                        <span class="fst-italic">
+                                    <div class="col-md-8">
+                                        <a href="<%= detailSaweranByID[0].username === 'tamu' ? '#' : web_config.domain + '/' + detailSaweranByID[0].username %>"
+                                            class="fst-italic">
+                                            <%= detailSaweranByID[0].username %>
+                                        </a>
+                                        / <span class="fst-italic">
                                             <%=detailSaweranByID[0].nama_pengirim %>
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="row mb-2">
-                                    <div class="col-3">
+                                    <div class="col-md-4">
                                         <span class="fw-bolder">Email Pengirim</span>
                                     </div>
-                                    <div class="col-7">
-                                        <span class="fst-italic">
+                                    <div class="col-md-8">
+                                        <a class="fst-italic" href="mailto:<%=detailSaweranByID[0].email_pengirim %>">
                                             <%=detailSaweranByID[0].email_pengirim %>
-                                        </span>
+                                        </a>
                                     </div>
                                 </div>
 
                                 <div class="row mb-2">
-                                    <div class="col-3">
+                                    <div class="col-md-4">
                                         <span class="fw-bolder">Pesan Pengirim</span>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-8">
                                         <span class="fst-italic">
                                             <%=detailSaweranByID[0].pesan_pengirim %>
                                         </span>
@@ -99,10 +81,10 @@
 
 
                                 <div class="row mb-2">
-                                    <div class="col-3">
+                                    <div class="col-md-4">
                                         <span class="fw-bolder">Metode Pembayaran</span>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-8">
                                         <span class="fst-italic">
                                             <%=detailSaweranByID[0].nama_mp %>
                                         </span>
@@ -110,32 +92,44 @@
                                 </div>
 
                                 <div class="row mb-2">
-                                    <div class="col-3">
+                                    <div class="col-md-4">
+                                        <span class="fw-bolder">Nominal</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="fst-italic" id="nominal">
+                                            <%= formatCurrency(detailSaweranByID[0].nominal) %>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mb-2">
+                                    <div class="col-md-4">
                                         <span class="fw-bolder">Biaya Admin</span>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-8">
                                         <span class="fst-italic" id="biaya_admin">
-                                            <%=detailSaweranByID[0].biaya_admin %>
+                                            <%= formatCurrency(detailSaweranByID[0].biaya_admin) %>
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="row mb-2">
-                                    <div class="col-3">
+                                    <div class="col-md-4">
                                         <span class="fw-bolder">Total Terima</span>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-8">
                                         <span class="fst-italic" id="total_terima">
-                                            <%=detailSaweranByID[0].total_terima %>
+                                            <%= formatCurrency(detailSaweranByID[0].total_terima) %>
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="row mb-2">
-                                    <div class="col-3">
+                                    <div class="col-md-4">
                                         <span class="fw-bolder">Waktu Transaksi</span>
                                     </div>
-                                    <div class="col-7">
+                                    <div class="col-md-8">
                                         <span class="fst-italic">
                                             <%=detailSaweranByID[0].waktu_transaksi %>
                                         </span>
@@ -143,12 +137,13 @@
                                 </div>
 
                                 <div class="row mb-2">
-                                    <div class="col-3">
+                                    <div class="col-md-4">
                                         <span class="fw-bolder">Status Transaksi</span>
                                     </div>
-                                    <div class="col-7">
-                                        <span class="fst-italic" id="status_transaksi">
-                                            <%=detailSaweranByID[0].status_transaksi %>
+                                    <div class="col-md-8">
+                                        <span
+                                            class="fst-italic badge <%= detailSaweranByID[0].status_transaksi === 'Sukses' ? 'bg-success' : 'bg-warning' %>">
+                                            <%= detailSaweranByID[0].status_transaksi %>
                                         </span>
                                     </div>
                                 </div>
@@ -166,7 +161,7 @@
                             <%= detailSaweranByID[0].id_transaksi %>
                         </li>
                     </ol>
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-header">
                             Detail Transaksi Sawer Keluar
                         </div>
@@ -174,21 +169,22 @@
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="row mb-2">
-                                        <div class="col-3">
+                                        <div class="col-md-4">
                                             <span class="fw-bolder">ID Transaksi</span>
                                         </div>
-                                        <div class="col-7">
-                                            <span class="fst-italic">
+                                        <div class="col-md-8">
+                                            <a href="<%=  web_config.domain %>/bayar/<%=detailSaweranByID[0].id_transaksi %>"
+                                                class="fst-italic">
                                                 <%=detailSaweranByID[0].id_transaksi %>
-                                            </span>
+                                            </a>
                                         </div>
                                     </div>
 
                                     <div class="row mb-2">
-                                        <div class="col-3">
+                                        <div class="col-md-4">
                                             <span class="fw-bolder">Reff PG</span>
                                         </div>
-                                        <div class="col-7">
+                                        <div class="col-md-8">
                                             <span class="fst-italic">
                                                 <%=detailSaweranByID[0].reff_pg %>
                                             </span>
@@ -196,23 +192,37 @@
                                     </div>
 
                                 </div>
+
+                                
                                 <div class="col-lg-7">
                                     <div class="row mb-2">
-                                        <div class="col-3">
+                                        <div class="col-md-4">
+                                            <span class="fw-bolder"> Username Penerima</span>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <a href="<%= detailSaweranByID[0].username === 'tamu' ? '#' : web_config.domain + '/' + detailSaweranByID[0].username %>"
+                                                class="fst-italic">
+                                                <%= detailSaweranByID[0].username %>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-2">
+                                        <div class="col-md-4">
                                             <span class="fw-bolder">Nominal</span>
                                         </div>
-                                        <div class="col-7">
+                                        <div class="col-md-8">
                                             <span class="fst-italic" id="nominal">
-                                                <%=detailSaweranByID[0].nominal %>
+                                                <%= formatCurrency(detailSaweranByID[0].nominal) %>
                                             </span>
                                         </div>
                                     </div>
 
                                     <div class="row mb-2">
-                                        <div class="col-3">
+                                        <div class="col-md-4">
                                             <span class="fw-bolder">Pesan Anda</span>
                                         </div>
-                                        <div class="col-7">
+                                        <div class="col-md-8">
                                             <span class="fst-italic">
                                                 <%=detailSaweranByID[0].pesan_pengirim %>
                                             </span>
@@ -221,10 +231,10 @@
 
 
                                     <div class="row mb-2">
-                                        <div class="col-3">
+                                        <div class="col-md-4">
                                             <span class="fw-bolder">Metode Pembayaran</span>
                                         </div>
-                                        <div class="col-7">
+                                        <div class="col-md-8">
                                             <span class="fst-italic">
                                                 <%=detailSaweranByID[0].nama_mp %>
                                             </span>
@@ -233,10 +243,10 @@
 
 
                                     <div class="row mb-2">
-                                        <div class="col-3">
+                                        <div class="col-md-4">
                                             <span class="fw-bolder">Waktu Transaksi</span>
                                         </div>
-                                        <div class="col-7">
+                                        <div class="col-md-8">
                                             <span class="fst-italic">
                                                 <%=detailSaweranByID[0].waktu_transaksi %>
                                             </span>
@@ -244,15 +254,17 @@
                                     </div>
 
                                     <div class="row mb-2">
-                                        <div class="col-3">
+                                        <div class="col-md-4">
                                             <span class="fw-bolder">Status Transaksi</span>
                                         </div>
-                                        <div class="col-7">
-                                            <span class="fst-italic" id="status_transaksi">
-                                                <%=detailSaweranByID[0].status_transaksi %>
+                                        <div class="col-md-8">
+                                            <span
+                                                class="fst-italic badge <%= detailSaweranByID[0].status_transaksi === 'Sukses' ? 'bg-success' : 'bg-warning' %>">
+                                                <%= detailSaweranByID[0].status_transaksi %>
                                             </span>
                                         </div>
                                     </div>
+
 
 
                                 </div>
@@ -265,48 +277,6 @@
             <script>
                 $(document).ready(function () {
 
-                    const bgStatus = () => {
-                        const status_transaksi = $("#status_transaksi").text().trim()
-                        if (status_transaksi == "Pending - Menunggu Pembayaran" || status_transaksi == "Pending - Menunggu Konfirmasi Admin") {
-                            $("#status_transaksi").addClass("badge rounded-pill text-bg-warning")
-                        }
-                        else if (status_transaksi == "Sukses") {
-                            $("#status_transaksi").addClass("badge rounded-pill text-bg-success")
-                        }
-                        else if (status_transaksi == "Gagal - Dibatalkan System" || status_transaksi == "Gagal - Dibatalkan Admin") {
-                            $("#status_transaksi").addClass("badge rounded-pill text-bg-danger")
-                        }
-                        else {
-                            $("#status_transaksi").addClass("badge rounded-pill text-bg-info")
-                        }
-                        $("#status_transaksi").css("padding", "10px")
-                    }
-
-                    bgStatus()
-
-
-
-                    let formatterID = new Intl.NumberFormat('id-ID', {
-                        style: 'decimal',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
-                    });
-                    const formatRp = (nominal) => {
-                        return 'Rp ' + formatterID.format(nominal)
-                    }
-
-                    const formatNum = () => {
-                        const nominal = $("#nominal").text().trim()
-                        $("#nominal").text(formatRp(nominal))
-
-                        const biaya_admin = $("#biaya_admin").text().trim()
-                        $("#biaya_admin").text(formatRp(biaya_admin))
-
-                        const total_terima = $("#total_terima").text().trim()
-                        $("#total_terima").text(formatRp(total_terima))
-                    }
-
-                    formatNum()
                 })
             </script>
             <%- include('../template/footer') %>

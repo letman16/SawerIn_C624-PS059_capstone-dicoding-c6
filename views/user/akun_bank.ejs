@@ -1,0 +1,258 @@
+<%- include('../template/head') %>
+    <%- include('../template/header') %>
+        <div class="container mt-5">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../user/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="../user/profile">Profile</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Akun Bank</li>
+                </ol>
+            </nav>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            Akun Bank
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="row mb-2">
+                                        <div class="col-lg-4 mb-2">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <span id="akun_bank">
+                                                        <% if (dataAkunBank[0].akun_bank) { %>
+                                                            <p class="fw-bold" id="nama_bank">
+                                                                <%= dataAkunBank[0].akun_bank.bank %>
+                                                            </p>
+                                                            <span class="fst-italic" id="no_rekening">
+                                                                <%= dataAkunBank[0].akun_bank.no_rekening %>
+                                                            </span> -
+                                                            <span class="fw-semibold" id="nama_rekening">
+                                                                <%= dataAkunBank[0].akun_bank.nama_rekening %>
+                                                            </span>
+                                                            <span
+                                                                class="badge <%= dataAkunBank[0].akun_bank.status ? 'text-bg-success' : 'text-bg-danger' %>">
+                                                                <%= dataAkunBank[0].akun_bank.status ? 'Terverifikasi'
+                                                                    : 'Tidak Terverifikasi' %>
+                                                            </span>
+                                                            <% } else { %>
+                                                                Akun Bank belum diatur
+                                                                <% } %>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>
+                                                        <% if (dataAkunBank[0].akun_bank) { %>
+                                                            Detail Rekening Bank
+                                                            <% } else { %>
+                                                                Tambah Rekening Bank
+                                                                <% } %>
+                                                    </h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">
+                                                            <div class="row mb-2">
+                                                                <div class="col-5">
+                                                                    Nama Bank
+                                                                </div>
+                                                                <div class="col-7">
+                                                                    <select class="form-control" id="nama_bank"
+                                                                        <%=dataAkunBank[0].akun_bank &&
+                                                                        !dataAkunBank[0].akun_bank.status ? 'disabled'
+                                                                        : '' %>>
+                                                                        <option value="">Pilih Bank</option>
+                                                                        <option value="Bank BCA"
+                                                                            <%=dataAkunBank[0].akun_bank &&
+                                                                            dataAkunBank[0].akun_bank.bank=='Bank BCA'
+                                                                            ? 'selected' : '' %>>Bank BCA</option>
+                                                                        <option value="Bank Mandiri"
+                                                                            <%=dataAkunBank[0].akun_bank &&
+                                                                            dataAkunBank[0].akun_bank.bank=='Bank Mandiri'
+                                                                            ? 'selected' : '' %>>Bank Mandiri</option>
+                                                                        <option value="Bank BRI"
+                                                                            <%=dataAkunBank[0].akun_bank &&
+                                                                            dataAkunBank[0].akun_bank.bank=='Bank BRI'
+                                                                            ? 'selected' : '' %>>Bank BRI</option>
+                                                                        <option value="Bank BNI"
+                                                                            <%=dataAkunBank[0].akun_bank &&
+                                                                            dataAkunBank[0].akun_bank.bank=='Bank BNI'
+                                                                            ? 'selected' : '' %>>Bank BNI</option>
+                                                                        <option value="Bank CIMB Niaga"
+                                                                            <%=dataAkunBank[0].akun_bank &&
+                                                                            dataAkunBank[0].akun_bank.bank=='Bank CIMB Niaga'
+                                                                            ? 'selected' : '' %>>Bank CIMB Niaga
+                                                                        </option>
+                                                                        <!-- Tambahkan opsi bank lainnya sesuai kebutuhan -->
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <div class="row mb-2">
+                                                                <div class="col-5">
+                                                                    Nomor Rekening
+                                                                </div>
+                                                                <div class="col-7">
+                                                                    <input type="number" class="form-control"
+                                                                        id="no_rekening"
+                                                                        value="<%= dataAkunBank[0].akun_bank ? dataAkunBank[0].akun_bank.no_rekening : '' %>"
+                                                                        <%=dataAkunBank[0].akun_bank &&
+                                                                        !dataAkunBank[0].akun_bank.status ? 'disabled'
+                                                                        : '' %> />
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <div class="row mb-2">
+                                                                <div class="col-5">
+                                                                    Nama Rekening
+                                                                </div>
+                                                                <div class="col-7">
+                                                                    <input type="text" class="form-control"
+                                                                        id="nama_rekening"
+                                                                        value="<%= dataAkunBank[0].akun_bank ? dataAkunBank[0].akun_bank.nama_rekening : '' %>"
+                                                                        <%=dataAkunBank[0].akun_bank &&
+                                                                        !dataAkunBank[0].akun_bank.status ? 'disabled'
+                                                                        : '' %> />
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <% if (dataAkunBank[0].akun_bank) { %>
+                                                            <li class="list-group-item">
+                                                                <div class="row mb-2">
+                                                                    <div class="col-5">
+                                                                        Status Rekening
+                                                                    </div>
+                                                                    <div class="col-7">
+                                                                        <input type="text" class="form-control"
+                                                                            id="status_rekening"
+                                                                            value="<%= dataAkunBank[0].akun_bank ? (dataAkunBank[0].akun_bank.status ? 'Terverifikasi' : 'Tidak Terverifikasi') : '' %>"
+                                                                            disabled />
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <% } %>
+                                                    </ul>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <% if (!(dataAkunBank[0].akun_bank &&
+                                                        !dataAkunBank[0].akun_bank.status)) { %>
+                                                        <button class="btn btn-primary float-end"
+                                                            id="btnShowModalConfirm">Simpan</button>
+                                                        <% } else { %>
+                                                            <span class="d-block text-center text-info">Akun Bank sedang
+                                                                diverifikasi</span>
+
+                                                            <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Save Akun Bank -->
+        <div class="modal fade" id="modalConfimSaveAkunBank" tabindex="-1"
+            aria-labelledby="modalConfimSaveAkunBankLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalConfimSaveAkunBankLabel">Konfirmasi Akun Bank</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12 mb-2">
+                                <label for="password_check_valid" class="form-label">Konfirmasi Password</label>
+                                <input type="password" class="form-control" id="password_check_valid" value="Lukman123">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" id="btnSaveAkunBank">Konfirmasi Akun Bank</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('../template/js') %>
+            <script>
+                $(document).ready(function () {
+                    const btnShowModalConfirm = $("#btnShowModalConfirm")
+                    btnShowModalConfirm.on('click', function () {
+                        $("#modalConfimSaveAkunBank").modal('show')
+                    });
+
+                    const btnSaveAkunBank = $("#btnSaveAkunBank")
+                    btnSaveAkunBank.on('click', function () {
+                        const dataKonfirmasiAkunBank = {
+                            nama_bank: $("#nama_bank").val(),
+                            no_rekening: $("#no_rekening").val(),
+                            nama_rekening: $("#nama_rekening").val(),
+                            password_check_valid: $("#password_check_valid").val()
+                        };
+                        if (Object.values(dataKonfirmasiAkunBank).slice(0, 3).every(val => val !== null && val !== undefined && val !== "")) {
+                            if (dataKonfirmasiAkunBank.password_check_valid !== null && dataKonfirmasiAkunBank.password_check_valid !== undefined && dataKonfirmasiAkunBank.password_check_valid !== "") {
+                                $("#password_check_valid").removeClass('is-invalid');
+                                axios({
+                                    method: 'post',
+                                    url: '/user/akun_bank/doChangeAkunBank',
+                                    data: { dataKonfirmasiAkunBank }
+                                }).then((responseAkunBank) => {
+                                    if (responseAkunBank.data.statusAkunBank == "OK") {
+                                        $("#modalConfimSaveAkunBank").modal('hide');
+                                        let timerInterval;
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Berhasil',
+                                            text: 'Selamat, Data telah berhasil diubah.',
+                                            timer: 1500,
+                                            timerProgressBar: true,
+                                            showConfirmButton: true,
+                                            allowOutsideClick: false,
+                                            didOpen: () => {
+                                                Swal.showLoading();
+                                            },
+                                            willClose: () => {
+                                                clearInterval(timerInterval);
+                                            }
+                                        }).then((result) => {
+                                            if (result.dismiss === Swal.DismissReason.timer) {
+                                                window.location.href = "/user/akun_bank";
+                                            }
+                                        });
+                                    } else if (responseAkunBank.data.statusAkunBank == "Konfirmasi Password tidak Benar.") {
+                                        $("#password_check_valid").val('');
+                                        $("#password_check_valid").addClass('is-invalid');
+                                        Swal.fire('Gagal', 'Konfirmasi Password tidak Benar.', 'info');
+                                    } else {
+                                        Swal.fire('Info', responseAkunBank.data.statusAkunBank, 'info');
+                                    }
+                                });
+                            } else {
+                                Swal.fire('Gagal', 'Maaf, Silahkan isi Konfirmasi Password dahulu.', 'info');
+                                $("#password_check_valid").addClass('is-invalid');
+                            }
+                        } else {
+                            Swal.fire('Gagal', 'Maaf, Silahkan isi semua data Akun Bank dahulu.', 'info');
+                            $("#modalConfimSaveAkunBank").modal('hide');
+                        }
+                    });
+
+                });
+            </script>
+            <%- include('../template/footer') %>

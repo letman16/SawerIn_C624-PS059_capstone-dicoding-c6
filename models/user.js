@@ -8,6 +8,7 @@ const users = sequelize.define('users', {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     no_telp: DataTypes.STRING,
+    akun_bank: DataTypes.JSON,
     password: DataTypes.STRING,
     status_user: DataTypes.STRING
 

@@ -20,9 +20,9 @@
                                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/dashboard">Dashboard</a></li>
+                                                        href="<%=  web_config.domain %>/admin/dashboard">Dashboard</a></li>
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/transaksi_nyawer">Transaksi
+                                                        href="<%=  web_config.domain %>/admin/transaksi_nyawer">Transaksi
                                                         Nyawer</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">
                                                     <%= trx_nyawer_by_id[0].id_transaksi %>
@@ -164,7 +164,7 @@
                                                     Status Transaksi
                                                 </div>
                                                 <div class="col-6">
-                                                    <span id="status_transaksi">
+                                                    <span id="status_transaksi" class="badge <%= trx_nyawer_by_id[0].status_transaksi === 'Sukses' ? 'bg-success' : 'bg-danger' %>">
                                                         <%= trx_nyawer_by_id[0].status_transaksi %>
                                                     </span>
                                                 </div>
@@ -211,7 +211,8 @@
                                         text: 'Status Transaksi dari PG: ' + responsePG.statusMessage,
                                         icon: 'info',
                                         confirmButtonColor: '#3085d6',
-                                        confirmButtonText: 'Ok'
+                                        confirmButtonText: 'Ok',
+                                        allowOutsideClick: false,
                                     }).then((result) => {
                                         if (result.isConfirmed) {
                                             Swal.fire('Info', 'Status Transaksi dari Sistem: ' + responseSistem.status_transaksi, 'info');

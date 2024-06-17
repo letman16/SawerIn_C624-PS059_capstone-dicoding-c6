@@ -20,9 +20,9 @@
                                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/dashboard">Dashboard</a></li>
+                                                        href="<%=  web_config.domain %>/admin/dashboard">Dashboard</a></li>
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/metode_pembayaran">Metode
+                                                        href="<%=  web_config.domain %>/admin/metode_pembayaran">Metode
                                                         Pembayaran</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">
                                                     <%= metode_pembayaran_by_id[0].id_mp %>
@@ -108,7 +108,7 @@
                                                     Status MP
                                                 </div>
                                                 <div class="col-6">
-                                                    <span id="status_mp">
+                                                    <span  class="badge <%= metode_pembayaran_by_id[0].status_mp === 'Aktif' ? 'bg-success' : 'bg-danger' %>" id="status_mp">
                                                         <%= metode_pembayaran_by_id[0].status_mp %>
                                                     </span>
                                                 </div>
@@ -164,8 +164,6 @@
 
                             <div class="col-12 mb-2">
                                 <label for="penyesuaian_biaya" class="form-label">Penyesuaian Biaya</label>
-                                <!-- <input type="penyesuaian_biaya" class="form-control" id="penyesuaian_biaya_update"
-                                    value="<%= metode_pembayaran_by_id[0].penyesuaian_biaya %>"> -->
                                 <select class="form-select"
                                     id="penyesuaian_biaya_update">
                                     <% if(metode_pembayaran_by_id[0].penyesuaian_biaya=="Persentase" ) { %>
@@ -279,6 +277,7 @@
                                         timer: 1500,
                                         timerProgressBar: true,
                                         showConfirmButton: true,
+                                        allowOutsideClick: false, 
                                         didOpen: () => {
                                             Swal.showLoading()
                                         },

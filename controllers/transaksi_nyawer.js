@@ -11,6 +11,9 @@ import md5 from "md5";
 
 const nyawerUser = (req, res) => {
     const uname = req.params.uname;
+    if (req.url === '/favicon.ico') {
+        return res.status(204).end(); 
+    }
     if (uname) {
         if (uname != "bayar") {
             if (uname != "tamu") {
@@ -28,23 +31,23 @@ const nyawerUser = (req, res) => {
                             let sqlGetMetodePembayaran = "SELECT * FROM metode_pembayarans where publish='Yes' ";
                             mysql.conn.query(sqlGetMetodePembayaran, (err, dataMP) => {
                                 if (err) throw err;
-                                res.render('nyawer_user', { user: req.session.user, penerima: penerima, dataMP })
+                                res.render('page/nyawer_user', { user: req.session.user, penerima: penerima, dataMP })
                             })
                         } else {
                             // User Penerima tidak Aktif
-                            req.flash('info', 'User Penerima sedang tidak Aktif.')
-                            res.redirect(303, '/')
+                            req.flash('info', 'User Penerima sedang Tidak aktif.')
+                            res.redirect(303, '/penerima')
                         }
                     }
                     else {
                         req.flash('info', 'User Penerima tidak Terdaftar.')
-                        res.redirect(303, '/')
+                        res.redirect(303, '/penerima')
                     }
                 })
             }
             else {
                 req.flash('info', 'Penerima tidak boleh tamu ya.')
-                res.redirect(303, '/')
+                res.redirect(303, '/penerima')
             }
         } else {
             req.flash('info', 'Penerima tidak boleh bayar ya.')
@@ -279,7 +282,7 @@ const bayarNyawerUser = (req, res) => {
         mysql.conn.query(sqlTransaksiByID, (err, transaksiNyawerByID) => {
             if (err) throw err;
             if (transaksiNyawerByID.length === 1) {
-                res.render('bayar_nyawer', { user: req.session.user, transaksiNyawerByID })
+                res.render('page/bayar_nyawer', { user: req.session.user, transaksiNyawerByID })
             } else {
                 // Transaksi Sawer tidak Ditemukan
                 req.flash('info', 'Transaksi Sawer tidak Ditemukan.')

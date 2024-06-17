@@ -1,10 +1,27 @@
-/* .metodePembayaran{
-    color: black;
-    border-radius: 10px;
-    margin: 3px;
-    padding: 10px;
-    cursor: pointer;
-} */
+:root {
+    --primer: #0dcaf0;
+    --second: #68D2E8;
+}
+
+.bg-primer {
+    background-color: var(--primer);
+}
+
+.bg-second {
+    background-color: var(--second);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+
+.nav-link:hover {
+  color: #ffc107;
+  border-bottom: 2px solid #ffc107;
+}
+
 #nominal,
 #nama_pengirim,
 #email_pengirim,
@@ -31,19 +48,6 @@
 
 #btnCopyIDTransaksi {
   cursor: pointer;
-}
-
-:root {
-    --primer: #0dcaf0;
-    --second: #68D2E8;
-}
-
-.bg-primer {
-    background-color: var(--primer);
-}
-
-.bg-second {
-    background-color: var(--second);
 }
 
 .logo {

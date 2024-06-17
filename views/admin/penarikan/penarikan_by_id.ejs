@@ -20,11 +20,11 @@
                                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/dashboard">Dashboard</a></li>
+                                                        href="<%=  web_config.domain %>/admin/dashboard">Dashboard</a></li>
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/dompet">Dompet</a></li>
+                                                        href="<%=  web_config.domain %>/admin/dompet">Dompet</a></li>
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/penarikan">Penarikan</a></li>
+                                                        href="<%=  web_config.domain %>/admin/penarikan">Penarikan</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">
                                                     <%= penarikan_by_id[0].reff_transaksi %>
                                                 </li>
@@ -222,6 +222,7 @@
                                         icon: 'success',
                                         title: 'Success',
                                         text: 'Data telah berhasil diupdate.',
+                                        allowOutsideClick: false,
                                         timer: 1500,
                                         timerProgressBar: true,
                                         showConfirmButton: true,

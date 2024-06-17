@@ -32,7 +32,7 @@
 <script type="text/javascript">
     (function () {
         const currentUrl = window.location.origin + window.location.pathname;
-        const baseUrl = '<%= baseUrl %>/';
+        const baseUrl = '<%=  web_config.domain %>/';
 
         if (currentUrl !== baseUrl) {
             document.getElementById('navLinks').style.display = 'none';

@@ -18,7 +18,7 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div class="auth-logo">
-                        <a href="<%= baseUrl %>"><img src="https://raw.githubusercontent.com/zuramai/mazer/main/src/assets/static/images/logo/logo.svg" alt="Logo"></a>
+                        <a href="<%=  web_config.domain %>"><img src="https://raw.githubusercontent.com/zuramai/mazer/main/src/assets/static/images/logo/logo.svg" alt="Logo"></a>
                     </div>
                     <h1 class="auth-title">Log in.</h1>
                     <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
@@ -90,7 +90,8 @@
                                             text: "Selamat datang kembali, admin " + responseLogin.data.adminLogin.nama_admin + ".",
                                             icon: 'success',
                                             confirmButtonColor: '#3085d6',
-                                            confirmButtonText: 'Ok'
+                                            confirmButtonText: 'Ok',
+                                            allowOutsideClick: false, 
                                         }).then((result) => {
                                             if (result.isConfirmed) {
                                                 window.location.href = "/admin/dashboard"

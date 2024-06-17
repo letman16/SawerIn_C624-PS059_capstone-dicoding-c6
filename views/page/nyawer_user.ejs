@@ -1,5 +1,5 @@
-<%- include('./template/head') %>
-  <%- include('./template/header') %>
+<%- include('../template/head') %>
+  <%- include('../template/header') %>
     <div class="container nyawerUser mt-5">
       <div class="row">
         <div class="col-12">
@@ -89,7 +89,7 @@
         </div>
       </div>
     </div>
-    <%- include('./template/js') %>
+    <%- include('../template/js') %>
 
 
       <script>
@@ -163,6 +163,7 @@
                     timer: 3000,
                     timerProgressBar: true,
                     showConfirmButton: true,
+                    allowOutsideClick: false, 
                     didOpen: () => {
                       Swal.showLoading()
                     },
@@ -192,4 +193,4 @@
           });
         });
       </script>
-      <%- include('./template/footer') %>
+      <%- include('../template/footer') %>

@@ -7,12 +7,12 @@
                     <li class="breadcrumb-item active" aria-current="page">Saweran Masuk</li>
                 </ol>
             </nav>
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header">
                     Saweran Masuk
                 </div>
-                <div class="card-body">
-                    <table class="table table-hover" id="table">
+                <div class="card-body table-responsive">
+                    <table class="table table-striped table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
@@ -34,21 +34,17 @@
                                                 <%= el.id_transaksi%>
                                             </a>
                                         </th>
-                                        <td id="td_nominal">
-                                            <%= el.nominal %>
+                                        <td>
+                                            <%= formatCurrency(el.nominal) %>
                                         </td>
                                         <td>
-                                            <%= el.biaya_admin %>
+                                            <%= formatCurrency(el.biaya_admin) %>
                                         </td>
                                         <td>
-                                            <%= parseInt(el.nominal) - parseInt(el.biaya_admin) %>
+                                            <%= formatCurrency(parseInt(el.nominal) - parseInt(el.biaya_admin)) %>
                                         </td>
-                                        <!-- <td>
-                                            <%= el.nama_mp %>
-                                        </td> -->
                                         <td>
                                             <%= el.nama_pengirim %>
-                                                <!-- - <p> <%= el.username    %></p> -->
                                         </td>
                                         <td>
                                             <%= el.pesan_pengirim %>
@@ -57,7 +53,10 @@
                                             <%= el.waktu_transaksi %>
                                         </td>
                                         <td>
-                                            <%= el.status_transaksi %>
+                                            <span
+                                                class="badge <%= el.status_transaksi === 'Sukses' ? 'bg-success' : 'bg-warning' %>">
+                                                <%= el.status_transaksi %>
+                                            </span>
                                         </td>
                                     </tr>
                                     <% }) %>
@@ -70,17 +69,9 @@
         <%- include('../template/js') %>
             <script>
                 $(document).ready(function () {
-
-                    let formatterRupiahID = new Intl.NumberFormat('id-ID', {
-                        style: 'decimal',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
+                    $('#table').DataTable({
+                        "order": [[6, "desc"]]
                     });
-                    const formatNominal = (nominal) => {
-                        return 'Rp ' + formatterRupiahID.format(nominal)
-                    }
-
-                    $('#table').DataTable();
                 })
             </script>
             <%- include('../template/footer') %>

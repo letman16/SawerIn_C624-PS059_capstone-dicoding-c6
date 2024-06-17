@@ -20,7 +20,8 @@
                                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/dashboard">Dashboard</a></li>
+                                                        href="<%=  web_config.domain %>/admin/dashboard">Dashboard</a>
+                                                </li>
                                                 <li class="breadcrumb-item active" aria-current="page">Users
                                                 </li>
                                             </ol>
@@ -44,6 +45,7 @@
                                                 <th>Email</th>
                                                 <th>No. Telp</th>
                                                 <th>Password</th>
+                                                <th>Bank</th>
                                                 <th>Status User</th>
                                             </tr>
                                         </thead>
@@ -51,27 +53,45 @@
                                             <% data_user.forEach((el)=> {%>
                                                 <tr>
                                                     <td>
-                                                        <%= el.user_id%>
+                                                        <%= el.user_id %>
                                                     </td>
                                                     <td>
-                                                        <a href="/admin/user/<%= el.username%>">
-                                                            <%= el.username%>
+                                                        <a href="/admin/user/<%= el.username %>">
+                                                            <%= el.username %>
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <%= el.nama_user%>
+                                                        <%= el.nama_user %>
                                                     </td>
                                                     <td>
-                                                        <%= el.email%>
+                                                        <%= el.email %>
                                                     </td>
                                                     <td>
-                                                        <%= el.no_telp%>
+                                                        <%= el.no_telp %>
                                                     </td>
                                                     <td>
-                                                        <%= el.password%>
+                                                        <%= el.password %>
                                                     </td>
                                                     <td>
-                                                        <%= el.status_user%>
+                                                        <% if (el.akun_bank) { %>
+                                                            <span
+                                                                class="<%= el.akun_bank.status ? 'text-success' : 'text-danger' %>">
+                                                                <%= el.akun_bank.bank %> - <%= el.akun_bank.no_rekening
+                                                                        %> - <%= el.akun_bank.nama_rekening %>
+                                                            </span>
+                                                            <% } else { %>
+                                                                <span class="text-info">
+                                                                    Belum diatur
+                                                                </span>
+                                                                <% } %>
+                                                    </td>
+
+                                                    <td>
+                                                        <span
+                                                            class="badge <%= el.status_user === 'Aktif' ? 'bg-success' : 'bg-danger' %>">
+                                                            <%= el.status_user %>
+                                                        </span>
+
                                                     </td>
                                                 </tr>
                                                 <% }) %>
@@ -79,9 +99,9 @@
                                     </table>
                                 </div>
                             </div>
-
                         </section>
                         <!-- Basic Tables end -->
+
 
                         <!-- Footer -->
                         <%- include('../template/footer') %>
@@ -90,7 +110,8 @@
 
         <!-- JS -->
         <%- include('../template/js') %>
-        <script src="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/static/js/pages/datatables.js"></script>
+            <script
+                src="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/static/js/pages/datatables.js"></script>
     </body>
 
     </html>

@@ -14,46 +14,60 @@
             </div>
             <div class="row p-2">
                 <div class="col-lg-6 p-1">
-                    <div class="card page">
+                    <div class="card page shadow">
                         <div class="card-header bg-primary text-white">
-                            <span id="judulPage">Saweran Masuk</span>
+                            <span id="judulPage" class="fw-bolder">Saweran Masuk</span>
                         </div>
                         <div class="card-body p-5">
-
+                            <h5 id="countTrxIn" class="text-center">
+                                <%= countTrxIn %> Transaksi
+                            </h5>
+                            <hr class="shadow" />
+                            <h3 id="sumTrxIn" class="text-center">
+                                <%= formatCurrency(sumTrxIn) %>
+                            </h3>
                         </div>
                         <div class="card-footer">
                             <span id="keteranganPage">
-                                Lihat histori saweran yang masuk disini.
+                                Lihat histori <b>saweran yang masuk disini</b>.
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 p-1">
-                    <div class="card page">
+                    <div class="card page shadow">
                         <div class="card-header bg-warning text-white">
-                            <span id="judulPage">Saweran Keluar</span>
+                            <span id="judulPage" class="fw-bolder">Saweran Keluar</span>
                         </div>
                         <div class="card-body p-5">
-
+                            <h5 id="countTrxOut" class="text-center">
+                                <%= countTrxOut %> Transaksi
+                            </h5>
+                            <hr class="shadow" />
+                            <h3 id="sumTrxOut" class="text-center">
+                                <%= formatCurrency(sumTrxOut) %>
+                            </h3>
                         </div>
                         <div class="card-footer">
                             <span id="keteranganPage">
-                                Lihat histori saweran yang kamu kirimkan.
+                                Lihat histori <b>saweran yang kamu kirimkan</b>.
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-12 p-1">
-                    <div class="card page">
+                    <div class="card page shadow">
                         <div class="card-header bg-success text-white">
-                            <span id="judulPage">Dompet</span>
+                            <span id="judulPage" class="fw-bolder">Dompet</span>
                         </div>
                         <div class="card-body p-5">
-
+                            <h2 id="sumSaldo" class="text-center">
+                                <%= formatCurrency(Saldo) %>
+                            </h2>
                         </div>
                         <div class="card-footer">
                             <span id="keteranganPage">
-                                Lihat histori saldo atau penarikan saldo disini.
+                                Lihat histori<b> saldo atau penarikan saldo disini</b>.
                             </span>
                         </div>
                     </div>
@@ -65,7 +79,6 @@
                 $(document).ready(function () {
                     const page = $('.page')
                     page.on('click', function () {
-                        // 
                         const judulPage = $(this).find('#judulPage').text();
 
                         if (judulPage == "Saweran Masuk") {

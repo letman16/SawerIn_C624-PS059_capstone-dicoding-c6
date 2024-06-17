@@ -17,7 +17,7 @@
                             Saldo</button>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body table-responsive">
                     <table class="table table-hover" id="table">
                         <thead>
                             <tr>
@@ -44,19 +44,26 @@
                                                 <% } %>
                                                     <% if(el.penyesuaian=="Debit" ) {%>
                                                         <%= el.reff_transaksi%>
-                                                        <% } %>
+                                                            <% } %>
                                         </td>
                                         <td>
                                             <%= el.nama_transaksi %>
                                         </td>
                                         <td>
-                                            <%= el.penyesuaian %>
+                                            <span
+                                                class="badge <%= el.penyesuaian === 'Credit' ? 'bg-info' : 'bg-danger' %>">
+                                                <%= el.penyesuaian %>
+                                            </span>
+
                                         </td>
                                         <td>
-                                            <%= el.nominal %>
+                                            <%= formatCurrency(el.nominal) %>
                                         </td>
                                         <td>
-                                            <%= el.status_transaksi_dompet %>
+                                            <span
+                                                class="badge <%= el.status_transaksi_dompet === 'Sukses' ? 'bg-success' : 'bg-warning' %>">
+                                                <%= el.status_transaksi_dompet %>
+                                            </span>
                                         </td>
                                     </tr>
                                     <% }) %>
@@ -84,8 +91,35 @@
                                 </div>
                             </div>
                             <div class="col-12 mb-2">
+                                <label for="akun_bank" class="form-label">Akun Bank</label>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <% if (dataUser[0].akun_bank) { %>
+                                            <input type="text" class="form-control" id="akun_bank"
+                                                value="<%= dataUser[0].akun_bank.bank %> - <%= dataUser[0].akun_bank.no_rekening %> - <%= dataUser[0].akun_bank.nama_rekening %>"
+                                                disabled>
+                                            <% if (dataUser[0].akun_bank.status===true) { %>
+                                                <span class="d-block text-center text-success">Akun Bank
+                                                    Terverifikasi</span>
+                                                <% } else { %>
+                                                    <span class="d-block text-center text-info">Akun Bank sedang
+                                                        diverifikasi</span>
+                                                    <% } %>
+                                                        <% } else { %>
+                                                            <input type="text" class="form-control" id="akun_bank"
+                                                                value="Akun Bank belum diatur" disabled>
+                                                            <% } %>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <i class="bi bi-bank"> <a class="p-2" href="/user/akun_bank">Akun Bank</a></i>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-12 mb-2">
                                 <label for="nominal" class="form-label">Nominal</label>
-                                <input type="number" class="form-control" id="nominal" value="10000">
+                                <input type="number" class="form-control" id="nominal" value="10000" required>
                             </div>
                         </div>
                     </div>
@@ -128,6 +162,7 @@
                                             timer: 1500,
                                             timerProgressBar: true,
                                             showConfirmButton: true,
+                                            allowOutsideClick: false,
                                             didOpen: () => {
                                                 Swal.showLoading()
                                             },
@@ -147,22 +182,14 @@
                                             icon: 'info',
                                             title: 'Info',
                                             text: responseDataTarikSaldo.data.statusPenarikanSaldo,
-                                            timer: 1500,
+                                            timer: 5000,
                                             timerProgressBar: true,
                                             showConfirmButton: true,
-                                            didOpen: () => {
-                                                Swal.showLoading()
-                                            },
-                                            willClose: () => {
-                                                clearInterval(timerInterval)
-                                            }
+                                            allowOutsideClick: false,
+
                                         }).then((result) => {
-                                            /* Read more about handling dismissals below */
-                                            if (result.dismiss === Swal.DismissReason.timer) {
-                                                // location.reload()
-                                                $("#modalWD").modal('hide')
-                                                $("#nominal").val('')
-                                            }
+                                            $("#nominal").val('')
+                                            $("#modalWD").modal('hide')
                                         })
                                     }
                                 });

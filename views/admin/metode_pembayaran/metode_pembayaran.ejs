@@ -20,7 +20,7 @@
                                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/dashboard">Dashboard</a></li>
+                                                        href="<%=  web_config.domain %>/admin/dashboard">Dashboard</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">Metode Pembayaran
                                                 </li>
                                             </ol>
@@ -64,10 +64,10 @@
                                                         <%= el.penyesuaian_biaya%>
                                                     </td>
                                                     <td>
-                                                        <%= el.publish%>
+                                                        <span class="badge <%= el.publish === 'Yes' ? 'bg-success' : 'bg-danger' %>"><%= el.publish%></span>
                                                     </td>
                                                     <td>
-                                                        <%= el.status_mp%>
+                                                       <span class="badge <%= el.status_mp === 'Aktif' ? 'bg-success' : 'bg-danger' %>"><%= el.status_mp%></span>
                                                     </td>
                                                 </tr>
                                                 <% }) %>

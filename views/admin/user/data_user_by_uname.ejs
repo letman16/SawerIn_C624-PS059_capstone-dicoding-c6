@@ -20,9 +20,10 @@
                                         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                                             <ol class="breadcrumb">
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/dashboard">Dashboard</a></li>
+                                                        href="<%=  web_config.domain %>/admin/dashboard">Dashboard</a>
+                                                </li>
                                                 <li class="breadcrumb-item"><a
-                                                        href="<%= baseUrl %>/admin/user">User</a></li>
+                                                        href="<%=  web_config.domain %>/admin/user">User</a></li>
                                                 <li class="breadcrumb-item active" aria-current="page">
                                                     <%= data_user_by_uname[0].username %>
                                                 </li>
@@ -58,8 +59,9 @@
                                                 </div>
                                                 <div class="col-6">
                                                     <a id="link_page"
-                                                        href="<%= baseUrl %>/<%= data_user_by_uname[0].username %>"><%= baseUrl %>/
-                                                        <%= data_user_by_uname[0].username %>
+                                                        href="<%=  web_config.domain %>/<%= data_user_by_uname[0].username %>">
+                                                        <%= web_config.domain %>/
+                                                            <%= data_user_by_uname[0].username %>
                                                     </a>
                                                     <span class="mx-2">|</span>
                                                     <img id="btnCopyLinkPage" style="cursor: pointer;" width="20"
@@ -121,6 +123,43 @@
                                         <li class="list-group-item">
                                             <div class="row mb-2">
                                                 <div class="col-6">
+                                                    Akun Bank
+                                                </div>
+                                                <div class="col-6">
+                                                    <span id="akun_bank">
+                                                        <% if (data_user_by_uname[0].akun_bank) { %>
+                                                            <%= data_user_by_uname[0].akun_bank.bank %> - <%=
+                                                                    data_user_by_uname[0].akun_bank.no_rekening %> - <%=
+                                                                        data_user_by_uname[0].akun_bank.nama_rekening %>
+                                                                        <% if (data_user_by_uname[0].akun_bank !=null) {
+                                                                            %>
+                                                                            <% if
+                                                                                (data_user_by_uname[0].akun_bank.status===true)
+                                                                                { %>
+                                                                                <span
+                                                                                    class="badge bg-success">Terverifikasi</span>
+                                                                                <% } else if
+                                                                                    (data_user_by_uname[0].akun_bank.status===false)
+                                                                                    { %>
+                                                                                    <span class="badge bg-danger">Tidak
+                                                                                        Terverifikasi</span>
+                                                                                    <% } %>
+                                                                                        <% } %>
+                                                                                            <% } else { %>
+                                                                                                <span
+                                                                                                    class="badge bg-info">
+                                                                                                    Akun Bank belum
+                                                                                                    diatur</span>
+                                                                                                <% } %>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+
+
+                                        <li class="list-group-item">
+                                            <div class="row mb-2">
+                                                <div class="col-6">
                                                     Bergabung sejak
                                                 </div>
                                                 <div class="col-6">
@@ -137,7 +176,9 @@
                                                     Status User
                                                 </div>
                                                 <div class="col-6">
-                                                    <span id="status_user">
+                                                    <span
+                                                        class="badge <%= data_user_by_uname[0].status_user === 'Aktif' ? 'bg-success' : 'bg-danger' %>"
+                                                        id="status_user">
                                                         <%= data_user_by_uname[0].status_user %>
                                                     </span>
                                                 </div>
@@ -204,100 +245,192 @@
                             </div>
 
                             <div class="col-12 mb-2">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password_update"
-                                    value="<%= data_user_by_uname[0].password %>">
-                            </div>
+                                <label for="akun_bank" class="form-label">Akun Bank</label>
+                                <% if (data_user_by_uname[0].akun_bank) { %>
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            Nama Bank
+                                        </div>
+                                        <div class="col-8">
+                                            <select class="form-control" id="nama_bank_update">
+                                                <option value="">Pilih Nama Bank</option>
+                                                <option value="Bank BCA" <%=data_user_by_uname[0].akun_bank &&
+                                                    data_user_by_uname[0].akun_bank.bank=='Bank BCA' ? 'selected' : ''
+                                                    %>>
+                                                    Bank BCA
+                                                </option>
+                                                <option value="Bank Mandiri" <%=data_user_by_uname[0].akun_bank &&
+                                                    data_user_by_uname[0].akun_bank.bank=='Bank Mandiri' ? 'selected'
+                                                    : '' %>>
+                                                    Bank Mandiri
+                                                </option>
+                                                <option value="Bank BRI" <%=data_user_by_uname[0].akun_bank &&
+                                                    data_user_by_uname[0].akun_bank.bank=='Bank BRI' ? 'selected' : ''
+                                                    %>>
+                                                    Bank BRI
+                                                </option>
+                                                <option value="Bank BNI" <%=data_user_by_uname[0].akun_bank &&
+                                                    data_user_by_uname[0].akun_bank.bank=='Bank BNI' ? 'selected' : ''
+                                                    %>>
+                                                    Bank BNI
+                                                </option>
+                                                <option value="Bank CIMB Niaga" <%=data_user_by_uname[0].akun_bank &&
+                                                    data_user_by_uname[0].akun_bank.bank=='Bank CIMB Niaga' ? 'selected'
+                                                    : '' %>>
+                                                    Bank CIMB Niaga
+                                                </option>
+                                                <!-- Tambahkan opsi bank lainnya sesuai kebutuhan -->
+                                            </select>
+                                        </div>
+                                    </div>
 
-                            <div class="col-12 mb-2">
-                                <label for="status_user" class="form-label">Status User</label>
-                                <select class="form-select" id="status_user_update">
-                                    <% if(data_user_by_uname[0].status_user=="Aktif" ) { %>
-                                        <option value="">- Pilih Status User -</option>
-                                        <option value="Aktif" selected>Aktif</option>
-                                        <option value="Tidak aktif">Tidak aktif</option>
-                                        <% } else if(data_user_by_uname[0].status_user=="Tidak aktif" ) {%>
-                                            <option value="">- Pilih Status User -</option>
-                                            <option value="Aktif">Aktif</option>
-                                            <option value="Tidak aktif" selected>Tidak aktif</option>
-                                            <%} else if(data_user_by_uname[0].status_user=="" ) {%>
-                                                <option value="" selected>- Pilih Status User -</option>
-                                                <option value="Aktif">Aktif</option>
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            No Rekening
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" id="no_rekening_update"
+                                                value="<%= data_user_by_uname[0].akun_bank.no_rekening %>">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            Nama Rekening
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" id="nama_rekening_update"
+                                                value="<%= data_user_by_uname[0].akun_bank.nama_rekening %>">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-4">
+                                            Status Rekening
+                                        </div>
+                                        <div class="col-8">
+                                            <select class="form-control" id="status_rekening_update">
+                                                <option value="">Pilih Status Rekening</option>
+                                                <option value="true" <%=data_user_by_uname[0].akun_bank &&
+                                                    data_user_by_uname[0].akun_bank.status ? 'selected' : '' %>>
+                                                    Terverifikasi
+                                                </option>
+                                                <option value="false" <%=data_user_by_uname[0].akun_bank &&
+                                                    !data_user_by_uname[0].akun_bank.status ? 'selected' : '' %>>
+                                                    Tidak Terverifikasi
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <% } else { %>
+                                            <input type="text" class="form-control" id="akun_bank"
+                                                value="Akun Bank belum diatur" disabled>
+                                            <% } %>
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password_update"
+                                            value="<%= data_user_by_uname[0].password %>">
+                                    </div>
+
+                                    <div class="col-12 mb-2">
+                                        <label for="status_user" class="form-label">Status User</label>
+                                        <select class="form-select" id="status_user_update">
+                                            <% if(data_user_by_uname[0].status_user=="Aktif" ) { %>
+                                                <option value="">- Pilih Status User -</option>
+                                                <option value="Aktif" selected>Aktif</option>
                                                 <option value="Tidak aktif">Tidak aktif</option>
-                                                <% }%>
+                                                <% } else if(data_user_by_uname[0].status_user=="Tidak aktif" ) {%>
+                                                    <option value="">- Pilih Status User -</option>
+                                                    <option value="Aktif">Aktif</option>
+                                                    <option value="Tidak aktif" selected>Tidak aktif</option>
+                                                    <%} else if(data_user_by_uname[0].status_user=="" ) {%>
+                                                        <option value="" selected>- Pilih Status User -</option>
+                                                        <option value="Aktif">Aktif</option>
+                                                        <option value="Tidak aktif">Tidak aktif</option>
+                                                        <% }%>
 
-                                </select>
+                                        </select>
+                                    </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btnSimpanUpdate">Simpan</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btnSimpanUpdate">Simpan</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- JS -->
-        <%- include('../template/js') %>
-            <script>
-                $(document).ready(function () {
+            <!-- JS -->
+            <%- include('../template/js') %>
+                <script>
+                    $(document).ready(function () {
 
-                    $("#btnCopyLinkPage").on('click', function () {
-                        const link_page = $('#link_page').attr('href')
-                        navigator.clipboard.writeText(link_page)
-                        Swal.fire('Berhasil', 'Link Page berhasil disalin pada clipboard.', 'success');
-                    })
+                        $("#btnCopyLinkPage").on('click', function () {
+                            const link_page = $('#link_page').attr('href')
+                            navigator.clipboard.writeText(link_page)
+                            Swal.fire('Berhasil', 'Link Page berhasil disalin pada clipboard.', 'success');
+                        })
 
-                    $("#btnModalUpdate").on('click', function () {
-                        $("#modalUpdate").modal("show")
+                        $("#btnModalUpdate").on('click', function () {
+                            $("#modalUpdate").modal("show")
+                        });
+
+                        $("#btnSimpanUpdate").on('click', function () {
+                            const dataUser = {
+                                user_id: $("#user_id_update").val(),
+                                nama_user: $("#nama_user_update").val(),
+                                password: $("#password_update").val(),
+                                status_user: $("#status_user_update").val(),
+                                akun_bank: {
+                                    bank: $("#nama_bank_update").val(),
+                                    no_rekening: $("#no_rekening_update").val(),
+                                    nama_rekening: $("#nama_rekening_update").val(),
+                                    status: $("#status_rekening_update").val() === "true"
+                                }
+                            };
+
+
+                            // Validasi dataUser, kecualikan akun_bank
+                            if (
+                                dataUser.user_id && dataUser.nama_user && dataUser.password && dataUser.status_user
+                            ) {
+                                axios({
+                                    method: 'post',
+                                    url: '/admin/user/doUpdateUser',
+                                    data: {
+                                        dataUser
+                                    }
+                                }).then((responseUpdate) => {
+                                    if (responseUpdate.data.status === 200) {
+                                        $("#modalUpdate").modal('hide');
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Success',
+                                            text: 'Data telah berhasil diupdate.',
+                                            timer: 1500,
+                                            timerProgressBar: true,
+                                            showConfirmButton: false,
+                                            allowOutsideClick: false,
+                                            didOpen: () => {
+                                                Swal.showLoading();
+                                            },
+                                            willClose: () => {
+                                                location.reload();
+                                            }
+                                        });
+                                    }
+                                }).catch(error => {
+                                    console.error('Error updating user:', error);
+                                    Swal.fire('Error', 'Terjadi kesalahan saat memperbarui data.', 'error');
+                                });
+                            } else {
+                                Swal.fire('Gagal', 'Maaf, Silahkan isi semua data dahulu.', 'info');
+                            }
+                        });
+
+
                     });
-
-                    $("#btnSimpanUpdate").on('click', function () {
-                        const dataUser = {
-                            user_id: $("#user_id_update").val(),
-                            nama_user: $("#nama_user_update").val(),
-                            password: $("#password_update").val(),
-                            status_user: $("#status_user_update").val()
-                        }
-                        console.log(dataUser);
-                        if (Object.values(dataUser).every(val => val !== null && val !== undefined && val !== "")) {
-                            axios({
-                                method: 'post', url: '/admin/user/doUpdateUser', data: {
-                                    dataUser
-                                }
-                            }).then((responseUpdate) => {
-                                if (responseUpdate.data.statusUpdate == "OK") {
-                                    $("#modalUpdate").modal('hide')
-                                    let timerInterval
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Success',
-                                        text: 'Data telah berhasil diupdate.',
-                                        timer: 1500,
-                                        timerProgressBar: true,
-                                        showConfirmButton: true,
-                                        didOpen: () => {
-                                            Swal.showLoading()
-                                        },
-                                        willClose: () => {
-                                            clearInterval(timerInterval)
-                                        }
-                                    }).then((result) => {
-                                        /* Read more about handling dismissals below */
-                                        if (result.dismiss === Swal.DismissReason.timer) {
-                                            location.reload()
-                                        }
-                                    })
-                                }
-                            });
-                        }
-                        else {
-                            Swal.fire('Gagal', 'Maaf, Silahkan isi semua data dahulu.', 'info');
-                        }
-                    })
-
-                });
-            </script>
+                </script>
     </body>
 
     </html>

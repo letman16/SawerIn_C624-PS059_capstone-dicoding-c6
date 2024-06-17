@@ -2,7 +2,10 @@ import { Sequelize, DataTypes} from 'sequelize';
 
 const sequelize = new Sequelize(process.env.DBNAME, process.env.USERDB, process.env.PASSDB, {
     host: process.env.HOST,
-    dialect: 'mysql'
+    dialect: 'mysql',
+    dialectOptions: {
+        connectTimeout: 60000 // Contoh timeout 60 detik
+    }
 });
 
 // Test connection

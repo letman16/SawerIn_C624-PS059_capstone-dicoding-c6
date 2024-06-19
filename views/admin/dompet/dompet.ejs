@@ -34,7 +34,7 @@
                         <!-- Basic Tables start -->
                         <section class="section">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body table-responsive">
                                     <table class="table" id="table1">
                                         <thead>
                                             <tr>
@@ -77,10 +77,12 @@
                                                         <%= el.penyesuaian%>
                                                     </td>
                                                     <td>
-                                                        <%= el.nominal%>
+                                                        <%= formatCurrency(el.nominal)%>
                                                     </td>
                                                     <td>
-                                                        <%= el.status_transaksi_dompet%>
+                                                        <span class="badge <%= el.status_transaksi_dompet === 'Sukses' ? 'bg-success' : 'bg-danger' %>">
+                                                            <%= el.status_transaksi_dompet %>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                                 <% }) %>
@@ -96,12 +98,11 @@
                         <%- include('../template/footer') %>
                 </div>
         </div>
-        https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/compiled/scss/pages/auth.scss
 
 
         <!-- JS -->
         <%- include('../template/js') %>
-        <script src="https://zuramai.github.io/mazer/demo/assets/static/js/pages/simple-datatables.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/zuramai/mazer@docs/demo/assets/static/js/pages/datatables.js"></script>
     </body>
 
     </html>

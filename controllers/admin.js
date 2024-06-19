@@ -11,7 +11,6 @@ import crypto from "crypto";
 import axios from "axios";
 
 const dashboardAdmin = (req, res) => {
-  req.session.admin = "admin";
   if (req.session.admin) {
     // Mengambil jumlah nominal transaksi dari database
     let sqlTrx =

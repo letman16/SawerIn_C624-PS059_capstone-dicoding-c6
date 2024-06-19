@@ -9,16 +9,8 @@
                     <div class="row">
                         <% if(dataPenerima) { %>
                             <% dataPenerima.forEach((el)=> { %>
-                                <div class="<% if(dataPenerima.length == 1){%> 
-                                    col-lg-12
-                                    <% } else if(dataPenerima.length == 2){%>
-                                    col-lg-6
-                                    <% } else if(dataPenerima.length == 3){%>
-                                        col-lg-4
-                                        <% } else if(dataPenerima.length >= 4){%>
-                                            col-lg-3
-                                        <% } %>
-                                ">
+                                <div class="mb-3 col-lg-<%= Math.max(12 / dataPenerima.length, 4) %>">
+
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="text-center">

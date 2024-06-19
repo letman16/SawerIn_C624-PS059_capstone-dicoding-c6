@@ -36,7 +36,7 @@
                         <!-- Basic Tables start -->
                         <section class="section">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-body table-responsive">
                                     <table class="table" id="table1">
                                         <thead>
                                             <tr>
@@ -70,10 +70,12 @@
                                                         <%= el.penyesuaian%>
                                                     </td>
                                                     <td>
-                                                        <%= el.nominal%>
+                                                        <%= formatCurrency(el.nominal)%>
                                                     </td>
                                                     <td>
-                                                        <%= el.status_transaksi_dompet%>
+                                                        <span class="badge <%= el.status_transaksi_dompet === 'Sukses' ? 'bg-success' : 'bg-danger' %>">
+                                                            <%= el.status_transaksi_dompet %>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                                 <% }) %>

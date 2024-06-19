@@ -28,7 +28,7 @@ const nyawerUser = (req, res) => {
                                     res.redirect(303, '/')
                                 }
                             }
-                            let sqlGetMetodePembayaran = "SELECT * FROM metode_pembayarans where publish='Yes' ";
+                            let sqlGetMetodePembayaran = "SELECT * FROM metode_pembayarans where publish='Yes' ORDER BY jenis_pembayaran ASC ";
                             mysql.conn.query(sqlGetMetodePembayaran, (err, dataMP) => {
                                 if (err) throw err;
                                 res.render('page/nyawer_user', { user: req.session.user, penerima: penerima, dataMP })
@@ -220,7 +220,7 @@ const cekTransaksiNyawer = (req, res) => {
                             res.json({ status: 200, error: null, transaksiNyawerByID, statusNyawer });
                         }
                         else if (responsePG.data.statusCode == "00") {
-                            transaksi_nyawer.update({ status_transaksi: "Sukses" }, { where: { id_transaksi: transaksiNyawerByID.id_transaksi } }).then(updateTransaksi => {
+                            Transaksi_Nyawer.update({ status_transaksi: "Sukses" }, { where: { id_transaksi: transaksiNyawerByID.id_transaksi } }).then(updateTransaksi => {
                                 if (updateTransaksi) {
 
                                     dompet.findOne({ where: { reff_transaksi: transaksiNyawerByID.id_transaksi } }).then(cekTransaksiDompet => {

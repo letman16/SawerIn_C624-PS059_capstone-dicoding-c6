@@ -64,21 +64,23 @@
                               <label for="metode_pembayaran" class="form-label">Pilih Metode Pembayaran</label>
 
                               <div class="row">
-                                <input type="text" id="iMetodePembayaran" hidden />
+                                <input type="text" id="iMetodePembayaran" hidden>
 
                                 <% if(dataMP.length>= 1) { %>
                                   <% dataMP.forEach(function(el) { %>
-                                    <div
-                                      class="metodePembayaran col-4 mt-2 rounded border border-primary text-center p-3">
-                                      <span value="<%= el.id_mp %>">
-                                        <%= el.nama_mp %>
-                                      </span>
+                                    <div class="col-lg-4 col-md-6 col-sm-12 mt-2">
+                                      <div class="metodePembayaran rounded border border-primary text-center p-3">
+                                        <span value="<%= el.id_mp %>">
+                                          <%= el.nama_mp %>
+                                        </span>
+                                      </div>
                                     </div>
                                     <% }) %>
-                                      <% }else { %>
-                                        <div class="text-center">Tidak ada Metode Pembayaran yang tersedia</div>
+                                      <% } else { %>
+                                        <div class="col text-center">Tidak ada Metode Pembayaran yang tersedia</div>
                                         <% } %>
                               </div>
+
                             </div>
                         </div>
                   </div>
@@ -163,7 +165,7 @@
                     timer: 3000,
                     timerProgressBar: true,
                     showConfirmButton: true,
-                    allowOutsideClick: false, 
+                    allowOutsideClick: false,
                     didOpen: () => {
                       Swal.showLoading()
                     },

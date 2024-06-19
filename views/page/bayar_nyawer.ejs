@@ -69,7 +69,7 @@
                     <span class="fw-bolder">Status Transaksi </span>
                   </div>
                   <div class="col-12">
-                    <span class="fst-italic" id="status_transaksi">
+                    <span class="fst-italic badge <%= transaksiNyawerByID[0].status_transaksi === 'Sukses' ? 'bg-success' : 'bg-warning' %>" id="status_transaksi">
                       <%= transaksiNyawerByID[0].status_transaksi %>
                     </span>
                   </div>
@@ -215,23 +215,6 @@
             });
           })
 
-          const bgStatus = () => {
-            const status_transaksi = $("#status_transaksi").text().trim()
-            if (status_transaksi == "Pending - Menunggu Pembayaran" || status_transaksi == "Pending - Menunggu Konfirmasi Admin") {
-              $("#status_transaksi").addClass("badge rounded-pill text-bg-warning")
-            }
-            else if (status_transaksi == "Sukses") {
-              $("#status_transaksi").addClass("badge rounded-pill text-bg-success")
-            }
-            else if (status_transaksi == "Gagal - Dibatalkan System" || status_transaksi == "Gagal - Dibatalkan Admin") {
-              $("#status_transaksi").addClass("badge rounded-pill text-bg-danger")
-            }
-            else {
-              $("#status_transaksi").addClass("badge rounded-pill text-bg-info")
-            }
-            $("#status_transaksi").css("padding", "10px")
-          }
-
           const btnCopyIDTransaksi = $('#btnCopyIDTransaksi')
           btnCopyIDTransaksi.on('click', function () {
             const id_transaksi = $('#id_transaksi').text().trim()
@@ -239,7 +222,6 @@
             Swal.fire('Berhasil', 'ID Transaksi berhasil disalin pada clipboard.', 'success');
           })
 
-          bgStatus();
 
   
         });

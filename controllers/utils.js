@@ -36,7 +36,11 @@ const generateID = (prefix, panjang) => {
 };
 
 const formatCurrency = (number) => {
-  return 'Rp' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  if (number === null || number === undefined) {
+    return 'Rp 0'; 
+  }
+  return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
+
 
 export default { generateID, fetchWebConfig, updateWebConfigLocals, formatCurrency };

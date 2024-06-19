@@ -5,6 +5,7 @@ const metode_pembayaran = sequelize.define('metode_pembayaran', {
         primaryKey: true
     },
     nama_mp: DataTypes.STRING,
+    jenis_pembayaran: DataTypes.STRING,
     biaya_mp: DataTypes.STRING,
     penyesuaian_biaya: DataTypes.STRING,
     publish: DataTypes.STRING,

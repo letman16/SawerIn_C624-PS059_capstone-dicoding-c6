@@ -101,7 +101,7 @@
                                         </div>
                                         <div class="col-6">
                                             <span id="total_saldo">
-                                                <%= Saldo %>
+                                                <%= formatCurrency(Saldo) %>
                                             </span>
                                         </div>
                                     </div>
@@ -181,23 +181,12 @@
         <%- include('../template/js') %>
             <script>
                 $(document).ready(function () {
-                    let formatterID = new Intl.NumberFormat('id-ID', {
-                        style: 'decimal',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
-                    });
-                    const formatRp = (nominal) => {
-                        return 'Rp ' + formatterID.format(nominal)
-                    }
 
                     $("#btnCopyLinkPage").on('click', function () {
                         const link_page = $('#link_page').attr('href')
                         navigator.clipboard.writeText(link_page)
                         Swal.fire('Berhasil', 'Link Page berhasil disalin pada clipboard.', 'success');
-                    })
-
-                    const total_saldo = $("#total_saldo").text().trim()
-                    $("#total_saldo").text(formatRp(total_saldo))
+                    });
 
 
 

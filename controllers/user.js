@@ -400,7 +400,6 @@ const doTarikSaldoUser = async (req, res) => {
         if (userWD) {
           if (userWD.status_user == "Aktif") {
             const akunBank = userWD.akun_bank;
-            console.log(akunBank);
             if (akunBank != null && akunBank.status === true) {
               if (dataBodyTarikSaldoUser.nominal >= 10000) {
                 if (

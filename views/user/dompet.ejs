@@ -11,7 +11,7 @@
                 <div class="card-header">
                     Dompet
                     <div style="float: right;">Total saldo Anda: <span id="totalSaldo" class="fw-bolder">
-                            <%= Saldo %>
+                        <%= formatCurrency(Saldo) %>
                         </span> <br>
                         <button style="float: right;" href="" class="btn btn-outline-primary mt-2" id="btnModalWD">Tarik
                             Saldo</button>
@@ -86,7 +86,7 @@
                             <div class="col-12 mb-1">
                                 <div style="float: right;">
                                     Total saldo Anda: <span id="totalSaldoModal" class="fw-bolder">
-                                        <%= Saldo %>
+                                        <%= formatCurrency(Saldo) %>
                                     </span>
                                 </div>
                             </div>
@@ -205,21 +205,6 @@
 
 
                     })
-
-                    let formatterRupiahID = new Intl.NumberFormat('id-ID', {
-                        style: 'decimal',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
-                    });
-                    const formatNominal = (nominal) => {
-                        return 'Rp ' + formatterRupiahID.format(nominal)
-                    }
-
-                    const totalSaldo = $("#totalSaldo").text()
-                    $("#totalSaldo").text(formatNominal(totalSaldo))
-
-                    const totalSaldoModal = $("#totalSaldoModal").text()
-                    $("#totalSaldoModal").text(formatNominal(totalSaldoModal))
 
                     $('#table').DataTable();
                 })
